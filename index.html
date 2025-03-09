@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goodbye Message</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: background 2s ease-in-out;
+        }
+        .start-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff9a9e, #fecfef);
+        }
+        .start-btn {
+            padding: 20px 40px;
+            font-size: 2rem;
+            background: #ee9ca7;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .start-btn:hover {
+            background: #ffdde1;
+            transform: scale(1.05);
+        }
+        .hidden {
+            display: none;
+        }
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+        section.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        section:nth-child(1) { background: linear-gradient(to right, #ff9a9e, #fecfef); }
+        section:nth-child(2) { background: linear-gradient(to right, #a1c4fd, #c2e9fb); }
+        section:nth-child(3) { background: linear-gradient(to right, #ffdde1, #ee9ca7); }
+        section:nth-child(4) { background: linear-gradient(to right, #a18cd1, #fbc2eb); }
+        .message-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-direction: column;
+        }
+        .message {
+            font-size: 1.5rem;
+            color: #000000;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 2s ease-in-out;
+        }
+        .photo {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: transform 1s ease-in-out, opacity 1.5s ease-in-out;
+        }
+        section.show .photo {
+            opacity: 1;
+            transform: scale(1);
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="start-screen" id="start-screen">
+        <button class="start-btn" onclick="startShow()">Show All Messages</button>
+    </div>
+
+    <div id="messages-container" class="hidden">
+        <section>
+            <div class="message-container">
+                <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="Nature 1" class="photo">
+                <div class="message">💖 Goodbye! Wishing you all the success, happiness, and fulfillment that life has to offer. You’ve been such an incredible part of my journey, and I will always cherish the memories we've created together. Take care, and remember — every ending is a new beginning. 🌟</div>
+            </div>
+        </section>
+        <section>
+            <div class="message-container">
+                <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="Nature 2" class="photo">
+                <div class="message">🌸 You’ve brought so much joy, laughter, and warmth into my life. You are the most beautiful friend I have ever made, and I’m so grateful to have known you. Though we part ways, our bond will remain strong and we may reunite with even greater joy ✨</div>
+            </div>
+        </section>
+        <section>
+            <div class="message-container">
+                <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="Nature 3" class="photo">
+                <div class="message">🌻  I’ll miss you more than words can say. But your physical abscence may not stop us being connected , and always remember — you’re special, cherished, and deeply loved .If you keep pursuing your dreams and love for aviation then one day you'll surely fly an aircraft🌷</div>
+            </div>
+        </section>
+        <section>
+            <div class="message-container">
+                <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="Nature 4" class="photo">
+                <div class="message">💫 You’ll always be my favorite person on this planet. Please promise me you’ll never forget me. If you ever feel like talking, know that I’ll always be here at rajeevisdead, just a message away. 💕</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+
+        const revealSections = () => {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.75) {
+                    section.classList.add('show');
+                }
+            });
+        };
+
+        const startShow = () => {
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('messages-container').classList.remove('hidden');
+            revealSections();
+        };
+
+        window.addEventListener('scroll', revealSections);
+    </script>
+</body>
+</html>
